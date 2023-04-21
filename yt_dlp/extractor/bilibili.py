@@ -5,6 +5,7 @@ import math
 import urllib.error
 import urllib.parse
 
+from ..xml2ass import xml2ass
 from .common import InfoExtractor, SearchInfoExtractor
 from ..dependencies import Cryptodome
 from ..utils import (
@@ -85,8 +86,8 @@ class BilibiliBaseIE(InfoExtractor):
     def _get_subtitles(self, video_id, aid, cid):
         subtitles = {
             'danmaku': [{
-                'ext': 'xml',
-                'url': f'https://comment.bilibili.com/{cid}.xml',
+                'ext': 'ass',
+                'data': xml2ass(cid, 1920, 1080, int(1080*0.2), '微软雅黑', 40.0, 0.8, 15.0, 5.0, None, None, False)
             }]
         }
 
